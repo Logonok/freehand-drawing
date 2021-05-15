@@ -1,0 +1,12 @@
+{
+  "name": "freehand-drawing",
+  "version": "1.0.0",
+  "description": "Draw freehand with your mouse or finger right in browser",
+  "author": "Logonok",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Logonok/freehand-drawing.git"
+  },
+  "dependencies": {}
+}

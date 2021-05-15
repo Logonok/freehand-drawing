@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Freehand Drawing</title>
+</head>
+<body>
+
+<h1>Freehand drawing area</h1>
+
+<canvas id="drawing" width="360" height="360"></canvas>
+
+<section>
+    <button id="erase-all">Erase all</button>
+    <button class="brush-size" value="10">Brush 1</button>
+    <button class="brush-size" value="20">Brush 2</button>
+    <button class="brush-size" value="30">Brush 3</button>
+    <input id="brush-color" type="color">
+    <button id="to-png">To PNG</button>
+</section>
+
+<script src="drawing.js"></script>
+<script>
+    const canvas = document.querySelector('#drawing');
+    const eraseAll = document.querySelector('#erase-all');
+    const brushColor = document.querySelector('#brush-color');
+    const brushSizes = document.querySelectorAll('.brush-size');
+    const toPNG = document.querySelector('#to-png');
+
+    const drawing = new FreehandDrawing(canvas);
+
+    eraseAll.addEventListener('click', () => {
+        drawing.eraseAll();
+    });
+    brushColor.addEventListener('change', event => {
+        drawing.setBrushColor(event.target.value);
+    });
+    for (const brushSize of brushSizes) {
+        brushSize.addEventListener('click', event => {
+            drawing.setBrushSize(event.target.value);
+        });
+    }
+    toPNG.addEventListener('click', () => {
+        const data = canvas.toDataURL('image/png');
+        const tab = window.open('about:blank', 'Freehand drawing to PNG');
+        tab.document.write(`<img src="${data}" alt="Freehand drawing">`);
+    });
+</script>
+</body>
+</html>
